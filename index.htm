@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tutorial Alpha | StormTime — версия 4.13</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0c12;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #e8edf2;
+            line-height: 1.55;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0f1117;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.5);
+            padding: 2rem 2rem 3rem;
+            border: 1px solid #23262e;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.25rem;
+        }
+        .version {
+            font-size: 0.85rem;
+            color: #6b7280;
+            border-bottom: 1px solid #23262e;
+            padding-bottom: 1rem;
+            margin-bottom: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #2c2f3a;
+        }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #cbd5e6;
+        }
+        .page-marker {
+            background: #1a1d26;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #9ca3af;
+            margin: 1rem 0 0.5rem 0;
+        }
+        .card-link {
+            background: #161922;
+            border-left: 3px solid #3b82f6;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+        .card-link a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .badge {
+            background: #1e293b;
+            color: #b9c7db;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: monospace;
+            display: inline-block;
+        }
+        .command {
+            background: #0b0e14;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            color: #facc15;
+            font-size: 0.9rem;
+            border: 1px solid #2d313e;
+        }
+        .note {
+            background: #1a1c24;
+            border-left: 4px solid #f97316;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.9rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .warning-note {
+            background: #1f1a1a;
+            border-left-color: #ef4444;
+        }
+        .success-note {
+            background: #12221c;
+            border-left-color: #22c55e;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1rem 0;
+        }
+        .example-box {
+            background: #12151e;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            border: 1px solid #262a34;
+        }
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #f0b27a;
+        }
+        ul, .simple-list {
+            margin: 0.8rem 0 0.8rem 1.5rem;
+        }
+        li {
+            margin: 0.5rem 0;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background: #23262e;
+            margin: 2rem 0;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #4b5563;
+            border-top: 1px solid #23262e;
+            padding-top: 2rem;
+        }
+        a {
+            color: #7aa2f7;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1.2rem; }
+            h2 { font-size: 1.4rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Tutorial a «Alpha»</h1>
+    <div class="version">
+        <span>Верс. 4.13 // 13.09.2024</span>
+        <span class="badge">StormTime</span>
+    </div>
+
+    <!-- Содержание / быстрые ссылки -->
+    <div class="card-link">📘 <a href="#intro">Вступление: кратко о задачах ранга Alpha</a> → [Перейти]</div>
+    <div class="card-link">⚙️ <a href="#reglament">Регламент проверки по рангу Alpha. Рекомендации по вызову и проведению проверки</a> → [Перейти]</div>
+    <div class="card-link">📜 <a href="#journaltrace-alpha">JournalTrace. Проверка очистки Cortex’а</a> → [Перейти]</div>
+    <div class="card-link">📊 <a href="#epl-alpha">Вариант I. ExecutedProgramsList</a> → [Перейти]</div>
+    <div class="card-link">🪟 <a href="#wpv">Вариант II. WinPrefetchView</a> → [Перейти]</div>
+    <div class="card-link">🖥️ <a href="#si">Вариант III. SystemInformer</a> → [Перейти]</div>
+    <div class="card-link">⚠️ <a href="#bypass">Возможные обходы проверки</a> → [Перейти]</div>
+    <div class="card-link">🔗 <a href="#links-alpha">Ссылки на программы</a> → [Перейти]</div>
+
+    <!-- СТРАНИЦА 2 -->
+    <div class="page-marker">Страница 2</div>
+    <h2 id="intro">Вступление</h2>
+    <p><strong>Объекты интереса ранга «Alpha»</strong> — .exe-inject и DoomsDay.</p>
+    <p>Помимо этого, информация, которая даётся на этом ранге, позволяет расширить или оптимизировать возможности проверяющего в ходе проверки «Beta» путём дополнительных или альтернативных методов.</p>
+    <p>Три программы, которые добавляются и используются в зависимости от выбора на данном ранге – это <strong>ExecutedProgramsList, WinPrefetchView и SystemInformer</strong>.</p>
+    <p>На своё усмотрение и в зависимости от своих умений проверяющий может воспользоваться одной из вышеперечисленных программ в дополнение к программам ранга Beta. Наиболее предпочтительным вариантом (и рекомендуется пользоваться именно этой программой) является проверка с помощью <strong>SystemInformer</strong>. Благодаря ней можно проверить и на использование .exe-inject, и .dll-inject, и предположить использование хитбоксов в игре. Менее предпочтительная – ExecutedProgramsList.</p>
+    <p>Также допустимо (и рекомендуется) использовать сканер <strong>Ocean</strong> для скорой поверхностной проверки ПК игрока и получения дополнительной информации. В некотором смысле Ocean заменяет JournalTrace и EPL/WPV/SI (даёт ту информацию, которую выводит и сканер). Руководство по использованию этой программы вынесено в отдельный документ (см. закреплённое сообщение беседы ранга Alpha).</p>
+
+    <!-- СТРАНИЦА 3 -->
+    <div class="page-marker">Страница 3</div>
+    <h2 id="reglament">Регламент проверки</h2>
+    <ul>
+        <li>На ранге «Alpha» добавляются программы: <strong>ExecutedProgramsList, WinPrefetchView, SystemInformer, Ocean</strong>. Использование прочих новых программ запрещено (кроме тех, что даны в Beta).</li>
+        <li><strong>Регламент проверки игрока по рангу «Alpha»:</strong>
+            <ul>
+                <li>Если у сотрудника должность «Модератор»: на игрока должны быть репорты, в частности, в день проведения проверки, либо игрока уже проверяли по Beta.</li>
+                <li>Если у сотрудника должность «Первый Модератор» или выше, то проверка по данному рангу для него обязательна в любом случае. Он вправе выбрать одну из 3 программ (EPL, WPV или SI), которую будет использовать в дополнение к имеющимся на ранге Beta (Everything и JournalTrace).</li>
+                <li><em>*При этом, если игрока проверял либо сотрудник ранга Alpha+, либо ранга Method, вызывать такого игрока нет смысла за исключением, если с момента проверки прошло не менее недели.</em></li>
+            </ul>
+        </li>
+        <li><strong>Требовать AnyDesk можно в трёх случаях:</strong> 1) когда этого требует руководство; 2) когда обнаружен лоадер/папки .exe inject’а, .exe-launcher’а, DoomsDay; на ПК есть хитбоксы или гост-клиенты; 3) когда обнаружено удаление .exe-файла или .jar-файла в день проверки через JournalTrace. Предварительно вы обязаны предупредить о бане за отказ от использования AnyDesk. Если игрок всё равно отказался – баним на 14 дней (если требуем из-за наличия чита или удаления, то эту причину и оглашаем).</li>
+        <li>Внимательно следите за тем, чтобы человек не записывал вашу проверку (OBS, NVIDIA, Bandicam…). Обнаружить это можно просто глазами, через Диспетчер задач / SystemInformer или Alt+Z (NVIDIA).</li>
+    </ul>
+
+    <!-- СТРАНИЦА 4 -->
+    <div class="page-marker">Страница 4</div>
+    <h2 id="journaltrace-alpha">JournalTrace. Проверка очистки Cortex’а</h2>
+    <p>Перед тем, как перейти к новым программам, необходимо разобрать метод, позволяющий доказать использование Cortex’а через JournalTrace ввиду автоудаления .pf-файла.</p>
+    <p>При инжекте/использовании cleaner’а иногда Cortex удаляет за собой .pf-файл с названием лоадера чита (например, SAFARI.EXE.PF). Это возможно обнаружить через программу JournalTrace.</p>
+    <p>Для этого необходимо воспользоваться <strong>Directory Tree</strong>, перейдя по пути <code>C:\Windows\Prefetch</code>. Сортируем по дате. Необходимо найти «File delete» напротив .pf-файла. Также можно воспользоваться Data Grid, введя туда <code>.pf</code> и отсортировав по дате.</p>
+
+    <!-- СТРАНИЦА 5-7 ExecutedProgramsList -->
+    <div class="page-marker">Страница 5–7</div>
+    <h2 id="epl-alpha">ExecutedProgramsList</h2>
+    <p>Программа позволяет проверить запускавшиеся ранее .exe-файлы, включая .exe-inject.</p>
+    <h3>Вариант 1. Сортировка по «Last Executed On»</h3>
+    <p>Проверка запускавшихся .exe файлов до времени проверки (за день). Например, проверка началась 26.09.24 13:30, проверяем те .exe-файлы, которые запускались 26 сентября до 13:30. В первую очередь обращаем внимание на файлы с пустыми «File Description», «Product Name», «File Versions» и/или «Company Name». Далее, если подозрительный файл обнаружен, ПКМ → «Open folder in Explorer» или Ctrl+O.</p>
+    <h3>Вариант 2. Двойная сортировка</h3>
+    <p>Сначала по «Last Executed On», затем по «Product Name» или «Company Name». Создаётся двойная сортировка – по времени последнего запуска и по отсутствию информации о программе. Если не сработало – сортируем по Product/Company name и используем Ctrl+F с сегодняшней датой.</p>
+    <h3>Вариант 3. Сортировка по размеру (File size)</h3>
+    <p>От большего к меньшему. Подходит для поиска Cortex’а. *Cortex подчищает за собой .pf-файл, поэтому если повезёт, данный чит-клиент окажется здесь благодаря записям в реестре.</p>
+
+    <!-- СТРАНИЦА 8-9 WinPrefetchView -->
+    <div class="page-marker">Страница 8–9</div>
+    <h2 id="wpv">WinPrefetchView</h2>
+    <p>Программа для детального анализа папки Prefetch. В отличие от папки позволяет проверять несколько дат запуска, отображаются иконки, путь до файла, а также с чем взаимодействовали процессы. Для работы нужно сортировать по <strong>Last Runtime</strong>.</p>
+    <p>При запуске .exe-inject часто используются два процесса – <strong>conhost</strong> (командная строка) и <strong>consent</strong> (права администратора). Если нажать на любой из этих процессов и проверить данные в панели снизу, можно обнаружить упоминание .exe-inject (пользуемся Everything для проверки файлов).</p>
+    <p><strong>cmd.exe</strong> – через этот процесс возможно обнаружить использование .bat-файла (очистка информации или аккуратный запуск чита). При обнаружении используем Everything и открываем .bat через Блокнот. <strong>DoomsDay</strong> использует Java, отображается во взаимодействии с процессом java.exe/javaw.exe.</p>
+
+    <!-- СТРАНИЦА 10 Расширенные возможности WinPrefetchView -->
+    <div class="page-marker">Страница 10</div>
+    <h3>Расширенные возможности WinPrefetchView</h3>
+    <ul>
+        <li><strong>Options > «Hide Programs Under Windows Folder»</strong> – скрывает .exe-файлы из папки Windows, сокращает список.</li>
+        <li><strong>Столбец «missed processes»</strong> – позволяет определить, удалён ли .exe-файл. Сортировку по нему проводить после сортировки по «Last Run Time».</li>
+    </ul>
+
+    <!-- СТРАНИЦА 11 Вписанные функции -->
+    <div class="page-marker">Страница 11</div>
+    <h3>Общая теория вписанных функций</h3>
+    <p>Вписанная функция – чит-функция, оформленная в существующих классах (.class) какой-либо модификации. Пример – Hitboxes in Neat (21,8 кб). Обнаружить подобное чит-по возможно лишь посредством <strong>SystemInformer</strong> (для Forge) или Luyten. В Alpha рассматривается только способ нахождения через SystemInformer.</p>
+    <p>Для поиска hitboxes как вписанной функции используются <strong>KeyInputEvent</strong> (регистрирует использование клавиш для активации) и <strong>RenderPlayerEvent</strong> (выполняет механизм чит-функции).</p>
+
+    <!-- СТРАНИЦА 12-13 SystemInformer ASM -->
+    <div class="page-marker">Страница 12–13</div>
+    <h2 id="si">SystemInformer — метод ASM</h2>
+    <p>Для поиска хитбоксов через SystemInformer используется метод ASM (актуален только для Forge). Применяется при наличии самописных модификаций в папке mods. ASM также является альтернативой JournalTrace ~ mods.</p>
+    <p>При работе с методом ASM процесс javaw.exe требует особой расстановки галочек и цифры 20, чтобы ПК у игрока не завис. Правильно профильтровав, увидим список всех запущенных Event’ов для Forge, вместе с ними – список работающих модификаций. Помимо поиска хитбоксов можно обнаружить и перемещённые запрещённые моды.</p>
+    <div class="note">Обратите внимание! Виден путь до интересующего нас .class (например, vazkii > neat > ToggleKeybind или HealthBarRenderer).</div>
+
+    <!-- СТРАНИЦА 14-15 dll-inject -->
+    <div class="page-marker">Страница 14–15</div>
+    <h3>Проверка на .dll-inject</h3>
+    <p>Dll-inject ищется через процесс javaw.exe в SystemInformer. Инструкция:</p>
+    <ol>
+        <li>Нажать ЛКМ по javaw.exe (выбрав тот, что потребляет больше памяти) 2 раза → раздел Modules.</li>
+        <li>Отсортировать по Description (следует и LoadTime). В начале списка должны быть .dll без описания.</li>
+        <li>ПКМ по колонке Name → choose the columns → перекинуть Load time, TimeLine и File Name.</li>
+        <li>Обращаем внимание на подозрительный File name (путь), Load Time, Timeline. ПКМ → Open file location. Сверяемся с таблицей.</li>
+    </ol>
+    <p><strong>Unloaded modules</strong>: ПКМ по javaw.exe → Miscellaneous → Unloaded Modules. Проверяем подозрительные файлы, затем Everything и сверка по таблице.</p>
+
+    <!-- СТРАНИЦА 16-19 Проверка процессов через SystemInformer -->
+    <div class="page-marker">Страница 16–19</div>
+    <h3>Проверка процессов/служб через SystemInformer</h3>
+    <p>Основная суть работы с SystemInformer – проверка памяти процессов для поиска упоминаний .exe inject и DoomsDay. Перед работой: открыть программу с правами Администратора, активировать галочку «Enable kernel-mode driver» (Options).</p>
+    <p><strong>explorer.exe</strong> – отвечает за запущенные приложения в течение сеанса. Два фильтра (Regex case insensitive): <code>^file:///.+.exe</code> (можно заменить на .zip, .rar, .jar, .bat) и <code>ms-shellactivity</code> (нивелирует обход с запуском .exe из архива).</p>
+    <p><strong>power / dcomlaunch</strong> – позволяют обнаружить использование DoomsDay. Фильтр: <code>-jar</code> или <code>.jar</code>.</p>
+
+    <!-- СТРАНИЦА 20-21 Обходы проверки -->
+    <div class="page-marker">Страница 20–21</div>
+    <h2 id="bypass">Возможные обходы проверки</h2>
+    <p><strong>Исключения в Everything:</strong> Проверить «Сервис» → «Настройки» → «Исключения». Убедиться, что нет галочек на «Исключать скрытые файлы и папки» и «Исключать системные файлы и папки», удалить директории из списка исключений.</p>
+    <p><strong>Неработоспособность JournalTrace:</strong> Альтернатива – Process Hacker / SystemInformer ~ Handles (javaw.exe). Метод позволяет выяснить, какие моды использовались (если переносились – их новое название, удалялись – можно определить). Сортировка – Type (File). Handles показывает перенесённые и удалённые моды ($Deleted или $Recycle.Bin).</p>
+    <p><strong>Внешний носитель:</strong> Игрок мог использовать чит-клиент на USB-флешке. System Informer – Options – Disk Devices – ПКМ по Вн. нос. – Properties – Сведения – Дата последнего удаления. Метод особенно полезен, когда отображается два отключённых внешних устройства.</p>
+
+    <!-- СТРАНИЦА 23 Ссылки -->
+    <div class="page-marker">Страница 23</div>
+    <h2 id="links-alpha">Ссылки на программы для проверки</h2>
+    <ul>
+        <li>AnyDesk: <a href="https://anydesk.com">https://anydesk.com</a></li>
+        <li>OBS-Studio: <a href="https://obsproject.com">https://obsproject.com</a></li>
+        <li>Everything: <a href="https://www.voidtools.com/ru-ru/">https://www.voidtools.com/ru-ru/</a></li>
+        <li>JournalTrace: <a href="https://github.com/ponei/journaltrace/releases/tag/1.0">https://github.com/ponei/journaltrace/releases/tag/1.0</a></li>
+        <li>SystemInformer: <a href="https://systeminformer.sourceforge.io/">https://systeminformer.sourceforge.io/</a></li>
+        <li>WinPrefetchView: <a href="https://www.nirsoft.net/utils/win_prefetch_view.html">https://www.nirsoft.net/utils/win_prefetch_view.html</a></li>
+        <li>Ocean: <a href="https://anticheat.ac/">https://anticheat.ac/</a></li>
+    </ul>
+    <p>Таблица весов чит-клиентов и хитбоксов:<br>
+    <a href="https://docs.google.com/spreadsheets/d/1pSmqGZEVJ-bpU2cxwIFCPoy11B9J9arQW9XKXrn_qnQ/edit#gid=0">https://docs.google.com/spreadsheets/d/1pSmqGZEVJ-bpU2cxwIFCPoy11B9J9arQW9XKXrn_qnQ/edit#gid=0</a></p>
+
+    <hr>
+    <p style="text-align: center; font-size: 0.85rem;">© Tutorial Alpha | StormTime — актуально для проверок ранга Alpha</p>
+    <footer>Верс. 4.13 // 13.09.2024. Составитель: shardov. Полная версия с иллюстрациями — в оригинальном документе.</footer>
+</div>
+</body>
+</html>
